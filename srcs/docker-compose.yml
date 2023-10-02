@@ -3,6 +3,8 @@ version: '3'
 services:
   nginx:
     container_name: nginx
+    depends_on:
+      - wordpress
     build: ./requirements/nginx
     ports:
       - 443:443
@@ -27,7 +29,6 @@ services:
     container_name: wordpress
     depends_on:
       - mariadb
-      - nginx
     build: ./requirements/wordpress
     restart: always
     env_file:
@@ -42,13 +43,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/gmallet/mariadb
+      device: /home/gmallet/sgoinfre/mariadb
       o: bind
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/gmallet/wordpress
+      device: /home/gmallet/sgoinfre/wordpress
       o: bind
 
 networks:

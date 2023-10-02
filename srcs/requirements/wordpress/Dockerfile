@@ -1,36 +1,12 @@
-FROM debian:bookworm
+FROM alpine:3.16.5
 
-RUN apt update -y
-RUN apt upgrade -y
-RUN apt install \
-	tini \
-	wget \
-	unzip \
-	php \
-    php-curl \
-    php-fpm \
-    php-bcmath \
-    php-gd \
-    php-soap \
-    php-zip  \
-    php-mbstring \
-    php-mysqlnd \
-    php-gd \
-    php-xml \
-    php-intl \
-    php-zip \
-    -y
+RUN apk -U add php8 php8-fpm php8-mysqli php8-iconv php8-phar tini
 
-RUN wget https://wordpress.org/latest.zip && unzip latest.zip -d /var/www/html/
-RUN cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
-RUN rm -rf latest.zip
-
+RUN adduser -S nginx && addgroup -S nginx
+COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
 COPY ./tools/entrypoint.sh /entrypoint.sh
-COPY ./conf/www.conf /etc/php/*/fpm/pool.d/
-RUN chmod +x /entrypoint.sh
-
-WORKDIR /var/www/html/wordpress
+RUN chmod	+x /entrypoint.sh
 
 EXPOSE 9000
 
-ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]

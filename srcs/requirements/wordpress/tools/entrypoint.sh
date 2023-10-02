@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 set -e
 
 if [ -z "${MDB_HOSTNAME}" ]; then
@@ -21,14 +21,14 @@ if [ -z "${MDB_USER_PWD}" ]; then
 	exit 1
 fi
 
-sed -i "s/username_here/$MDB_USER/g" wp-config-sample.php
-sed -i "s/password_here/$MDB_USER_PWD/g" wp-config-sample.php
-sed -i "s/localhost/$MDB_HOSTNAME/g" wp-config-sample.php
-sed -i "s/database_name_here/$MDB_DATABASE/g" wp-config-sample.php
-cp wp-config-sample.php wp-config.php
+sed -i "s/username_here/$MDB_USER/g" /var/www/html/wordpress/wp-config-sample.php
+sed -i "s/password_here/$MDB_USER_PWD/g" /var/www/html/wordpress/wp-config-sample.php
+sed -i "s/localhost/$MDB_HOSTNAME/g" /var/www/html/wordpress/wp-config-sample.php
+sed -i "s/database_name_here/$MDB_DATABASE/g" /var/www/html/wordpress/wp-config-sample.php
+cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
 
 chown nginx:nginx -R /var/www/html/*
 find /var/www/html -type d -exec chmod 777 {} \;
 find /var/www/html -type f -exec chmod 777 {} \;
 
-php-fpm8.2 -F
+php-fpm8 -F

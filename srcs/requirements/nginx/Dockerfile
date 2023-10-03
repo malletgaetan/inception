@@ -16,7 +16,7 @@ COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /var/log/nginx
 RUN mkdir -p /var/www/html
 RUN chmod 755 /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+# RUN chown -R www-data:www-data /var/www/html
 
 ENTRYPOINT ["tini", "--"]
 

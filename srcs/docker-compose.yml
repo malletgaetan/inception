@@ -43,7 +43,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/gmallet/sgoinfre/mariadb
+      device: /home/gmallet/mariadb
       o: bind
   wordpress_data:
     driver: local

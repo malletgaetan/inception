@@ -13,10 +13,10 @@ down:
 	docker compose --file $(COMPOSE_FILEPATH) down
 
 fclean: down
-	docker rm $$(docker ps -qa)
-	docker rmi -f $$(docker images -qa)
-	docker volume rm $$(docker volume ls -q)
-	docker network rm $$(docker network ls -q)
+	docker system prune --volumes --all --force
+	docker network prune --force
+	docker volume prune --force
+	docker image prune --force
 	rm -rf $(DATA_PATH)
 
 .PHONY: up build down clean

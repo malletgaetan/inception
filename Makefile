@@ -1,4 +1,4 @@
-DATA_PATH=/home/gaetan/data
+DATA_PATH=/home/gmallet/data
 DATA_PATH_WORDPRESS=$(DATA_PATH)/wordpress
 DATA_PATH_MARIADB=$(DATA_PATH)/mariadb
 COMPOSE_FILEPATH=./srcs/docker-compose.yml

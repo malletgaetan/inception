@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-DOMAIN_NAME=gmallet.42.fr
+DOMAIN_NAME=gaetan.42.fr
 MDB_HOSTNAME=mariadb
 MDB_DATABASE=wordpress
-MDB_USER=gmallet
+MDB_USER=gaetan
 MDB_USER_PWD=PWD123
 MDB_ADMIN=adminboss
 MDB_ADMIN_PWD=meboss123

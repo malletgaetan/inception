@@ -1,11 +1,13 @@
 FROM alpine:3.16.5
 
-RUN apk -U add php8 php8-fpm php8-mysqli php8-iconv php8-phar tini
+RUN apk -U add php8 php8-fpm php8-mysqli php8-iconv php8-phar tini wget tar
 
 RUN adduser -S nginx && addgroup -S nginx
 COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
 COPY ./tools/entrypoint.sh /entrypoint.sh
 RUN chmod	+x /entrypoint.sh
+
+RUN wget http://wordpress.org/latest.tar.gz
 
 EXPOSE 9000
 

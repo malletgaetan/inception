@@ -21,6 +21,11 @@ if [ -z "${MDB_USER_PWD}" ]; then
 	exit 1
 fi
 
+rm -rf /var/www/html/wordpress
+tar xfz latest.tar.gz
+mv wordpress /var/www/html/wordpress
+rm -rf latest.tar.gz
+
 sed -i "s/username_here/$MDB_USER/g" /var/www/html/wordpress/wp-config-sample.php
 sed -i "s/password_here/$MDB_USER_PWD/g" /var/www/html/wordpress/wp-config-sample.php
 sed -i "s/localhost/$MDB_HOSTNAME/g" /var/www/html/wordpress/wp-config-sample.php

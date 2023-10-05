@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-DOMAIN_NAME=gmallet.42.fr
-MDB_HOSTNAME=mariadb
-MDB_DATABASE=wordpress
-MDB_USER=gmallet
-MDB_USER_PWD=PWD123
-MDB_ADMIN=adminboss
-MDB_ADMIN_PWD=meboss123
-MDB_ROOT_PWD=rootroot
-
 if [ -z "${MDB_DATABASE}" ]; then
 	echo "MDB_DATABASE env var not set."
 	exit 1
